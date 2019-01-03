@@ -1,0 +1,51 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+Demo App
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='table.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='navbar.css')}}"> 
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet">
+
+{% endblock %}
+
+{% block content%}
+  <div class="container">  
+   <nav class="nav-bar">
+      <div class="nav-container"> 
+          <a id="nav-menu" class="nav-menu">☰ Menu</a>
+          <ul class="nav-list " id="nav">
+              <li> <a href="{{ url_for('set') }}" id="tile1"><i class="icon ion-ios7-monitor-outline"></i> Set data</a></li>
+              <li> <a href="#" id="tile2"><i class="icon ion-ios7-person-outline"></i> About</a></li>
+              <li> <a href="#" id="tile7"><i class="ion-ios7-email-outline"></i> Contact Us</a></li>
+              <li> <a href="{{ url_for('logout') }}" id="tile8"><i class="ion-ios7-paper-outline"></i> Logout</a></li>
+          </ul>
+      </div>
+  </nav>
+  </div>
+
+  <div class="content">
+
+    <h2 style="color: #00a8af;">Enter Key to see if record exists in database</h2>
+    <form method="POST" action="{{ url_for('get') }}">
+      <input type="text" name="key" placeholder="Enter Key" style="width: 400px; font-size: 20px; height: 40px">
+      <input type="submit" name="check" value="Check" style="background:#00a8af;width: 100px; font-size: 14px; height: 30px">
+      <p></p><p style="color: gray"><strong>Note:</strong>  Visit Set data page to add records</p>
+
+      {% if record %}
+      <p></p>
+      <p></p>
+      <p style="font-size: 20px; color: #00a8af "> Key is : {{record.key}} <br> The value is : {{record.value}}</p>
+      {% endif %}
+    
+    {% if empty %}
+    <h4 style="color: #00a8af"> {{empty}} </h4>
+    {% endif%}
+
+  </form>
+  </div>
+{% endblock %}

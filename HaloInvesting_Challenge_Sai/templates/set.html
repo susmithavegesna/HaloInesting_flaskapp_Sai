@@ -1,0 +1,85 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+Demo App
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='table.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='navbar.css')}}"> 
+<link href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet"> 
+<link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400"/>
+
+
+{% endblock %}
+
+{% block content%}
+  <div class="container">
+  <nav class="nav-bar">
+      <div class="nav-container"> 
+          <a id="nav-menu" class="nav-menu">☰ Menu</a>
+          <ul class="nav-list " id="nav">
+              <li> <a href="{{ url_for('get') }}" id="tile1"><i class="icon ion-ios7-monitor-outline"></i> Get</a></li>
+              <li> <a href="#" id="tile2"><i class="icon ion-ios7-person-outline"></i> About</a></li>
+              <li> <a href="#" id="tile7"><i class="ion-ios7-email-outline"></i> Contact Us</a></li>
+              <li> <a href="{{ url_for('logout') }}" id="tile8"><i class="ion-ios7-paper-outline"></i> Logout</a></li>
+          </ul>
+      </div>
+  </nav>
+
+</div>
+<div class="content">
+
+    <h1>Add records here</h1>
+    <form method="POST" action="/set">
+      <input type="text" name="key" placeholder="Enter new key">
+      <input type="text" name = "value" placeholder="Enter new Value">
+      <input class= "button" type="submit" value="Add" style="background:#00a8af">
+    </form>
+
+    {% for b in record %}
+      
+    <table>
+      <thead >
+        <h3>List of key value pairs created</h3>
+    
+        <tr>
+
+      <th> Key</th>
+      <th> Value</th>
+      <th> Value update field
+      <th>Update</th>
+      <th> Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            {{b.key}} 
+          </td>
+          <td>
+            {{b.value}}
+          </td>
+          <td>
+            <form method="POST" action="./update" style="display: inline">
+              <input type="text" value="{{b.value}}" name="newvalue" >
+              <input type="hidden" value="{{b.value}}" name="oldvalue">
+              <td><input class= "button"  type="submit" value="Update" style="background:#00a8af"></td>
+            </form>
+          </td>
+          <td>
+            <form method="POST" action="./delete" style="display: inline">
+              <input type="hidden" value="{{b.key}}" name="key">
+              <input type="hidden" value="{{b.value}}" name="value">
+              
+              <input style="background:#00a8af" class= "button" type="submit" value="Delete">
+            </form>
+          </td>
+       
+        </tr>
+      </tbody>
+        {% endfor %}
+    <table/>
+  </div>
+  {% endblock %}

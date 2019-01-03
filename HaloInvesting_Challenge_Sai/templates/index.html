@@ -1,0 +1,46 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+Demo App
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='index.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='navbar.css')}}"> 
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+  <link href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    
+    <nav class="nav-bar">
+        <div class="nav-container"> 
+            <a id="nav-menu" class="nav-menu">☰ Menu</a>
+            <ul class="nav-list " id="nav">
+                <li> <a href="{{ url_for('login') }}" id="tile1"><i class="icon ion-ios7-home-outline"></i> Login</a></li>
+                <li> <a href="#" id="tile2"><i class="icon ion-ios7-person-outline"></i> About</a></li>
+                <li> <a href="#" id="tile8"><i class="ion-ios7-email-outline"></i> Contact</a></li>
+                <li> <a href="{{ url_for('signup') }}" id="tile7"><i class="ion-ios7-paper-outline"></i>Register </a></li>
+                
+            </ul>
+        </div>
+    </nav>
+</div>
+
+    <div class="container">
+<!--
+      <div class="starter-template">
+        <p class="lead">Please login to access you keys and values.  </p>
+      </div> -->
+
+    <!-- /.container -->
+    <div class="foo">
+  <span class="letter" data-letter="Login ">Login</span>
+  <span class="letter" data-letter=" to access">to access </span>
+</div>
+
+{% endblock %}
