@@ -13,7 +13,7 @@ Windows instructions to run the app
 •	Flask-wtf
 •	Flask-Bootstrap
 
-4) Commands for initializing database
+4) Python commands for initializing database
     •	from getset import db
     •	db.create_all()
     •   Exit()
